@@ -1,0 +1,14 @@
+i {
+  margin: 0 5px;
+  font-size: 18px !important;
+  cursor: pointer;
+}
+.fa-eye {
+  color: rgb(105, 105, 224);
+}
+.fa-pencil {
+  color: rgb(119, 119, 119);
+}
+.fa-trash {
+  color: rgb(228, 91, 91);
+}
