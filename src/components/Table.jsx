@@ -7,33 +7,37 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "../styles/Table.css";
-import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPen, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const titleHead = {
   fontWeight: "700",
   fontSize: "16px",
 };
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
+function createData(id, title, description, action) {
+  return { id, title, description, action };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 98),
-  createData("Ice cream sandwich", 237, 67),
-  createData("Eclair", 262, 72),
-  createData("Cupcake", 305, 85),
-  createData("Gingerbread", 356, 83),
+  createData(
+    1,
+    "React Development",
+    "Need to complete react developemt by today and make the to do app",
+    98
+  ),
 ];
 
 export default function BasicTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer className="table-container" component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
+            <TableCell sx={titleHead}>ID</TableCell>
             <TableCell sx={titleHead}>Task Title</TableCell>
-            <TableCell sx={titleHead} align="center">
+            <TableCell sx={titleHead} align="left">
               Task Details
             </TableCell>
             <TableCell sx={titleHead} align="center">
@@ -42,28 +46,48 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="center">{row.calories}</TableCell>
-              <TableCell align="center">
-                <Link to="/view-task">
-                  <i className="fa fa-regular fa-eye"></i>
-                </Link>
-                <Link to="/update-task">
-                  <i className="fa fa-regular fa-pencil"></i>
-                </Link>
-                <Link to="/delete-task">
-                  <i className="fa fa-regular fa-trash"></i>
-                </Link>
+          {rows.length > 0 ? (
+            rows.map((row) => (
+              <TableRow
+                key={row.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="td" scope="row">
+                  {row.id}
+                </TableCell>
+                <TableCell align="left">
+                  {row.title.length > 30
+                    ? row.title.substring(0, 30 - 3) + "..."
+                    : row.title}
+                </TableCell>
+                <TableCell align="left">
+                  {row.description.length > 30
+                    ? row.description.substring(0, 50 - 3) + "..."
+                    : row.description}
+                </TableCell>
+                <TableCell align="center">
+                  <Button>
+                    <FontAwesomeIcon icon={faEye} />
+                  </Button>
+                  <Button>
+                    <FontAwesomeIcon icon={faPen} />
+                  </Button>
+                  <Button>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow className="no-data-text">
+              <TableCell
+                sx={{ textAlign: "center !important", fontSize: "16px" }}
+                colSpan="4"
+              >
+                No data found
               </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

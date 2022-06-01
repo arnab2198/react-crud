@@ -1,0 +1,19 @@
+.form-task {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+.task-add-container {
+  padding: 50px;
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  width: 100% !important;
+}

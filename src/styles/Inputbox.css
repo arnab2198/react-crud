@@ -1,8 +1,0 @@
-input {
-  border: none;
-  outline: none;
-  text-align: left;
-}
-.css-1x51dt5-MuiInputBase-input-MuiInput-input:invalid {
-  padding: 8px !important;
-}
